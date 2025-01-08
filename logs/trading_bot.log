@@ -1,0 +1,25 @@
+2025-01-08 17:20:46,331 - ERROR - Error occurred: Incorrect padding
+2025-01-08 17:21:46,062 - INFO - Available USDT balance: 0.45447
+2025-01-08 17:21:46,062 - WARNING - Insufficient USDT balance to proceed with trading.
+2025-01-08 17:27:05,490 - ERROR - Error occurred: Incorrect padding
+2025-01-08 17:27:54,609 - INFO - Available USDT balance: 0.45447
+2025-01-08 17:27:54,609 - INFO - Available BTC balance: 0.00019361
+2025-01-08 17:27:56,961 - INFO - No trade signal. Holding position.
+2025-01-08 17:32:57,279 - INFO - Available USDT balance: 0.45447
+2025-01-08 17:32:57,279 - INFO - Available BTC balance: 0.00019361
+2025-01-08 17:32:57,473 - INFO - No trade signal. Holding position.
+2025-01-08 17:37:57,624 - INFO - Available USDT balance: 0.45447
+2025-01-08 17:37:57,624 - INFO - Available BTC balance: 0.00019361
+2025-01-08 17:37:57,751 - INFO - No trade signal. Holding position.
+2025-01-08 17:42:57,877 - INFO - Available USDT balance: 0.45447
+2025-01-08 17:42:57,877 - INFO - Available BTC balance: 0.00019361
+2025-01-08 17:42:58,125 - INFO - No trade signal. Holding position.
+2025-01-08 17:47:58,252 - INFO - Available USDT balance: 0.45447
+2025-01-08 17:47:58,252 - INFO - Available BTC balance: 0.00019361
+2025-01-08 17:47:58,488 - INFO - No trade signal. Holding position.
+2025-01-08 17:52:58,708 - INFO - Available USDT balance: 0.45447
+2025-01-08 17:52:58,708 - INFO - Available BTC balance: 0.00019361
+2025-01-08 17:52:58,904 - INFO - No trade signal. Holding position.
+2025-01-08 17:53:27,594 - INFO - Available USDT balance: 10.36757
+2025-01-08 17:53:27,594 - INFO - Available BTC balance: 0.00019361
+2025-01-08 17:53:29,996 - INFO - No trade signal. Holding position.
