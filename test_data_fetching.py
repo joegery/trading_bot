@@ -15,8 +15,8 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# go to https://jgery-bot-0e24270cbb69.herokuapp.com/ to see if app is running
-# go to https://jgery-bot-0e24270cbb69.herokuapp.com/logs to see logs
+# go to https://your-heroku-app-name.herokuapp.com/ to see if app is running
+# go to https://your-heroku-app-name.herokuapp.com/logs to see logs
 
 # Flask app for monitoring
 app = Flask(__name__)
@@ -34,8 +34,16 @@ def view_logs():
         return f"Error reading logs: {e}"
 
 def run_bot():
+    # Fetch API keys from environment variables
+    api_key = os.getenv("KRAKEN_API_KEY")
+    api_secret = os.getenv("KRAKEN_API_SECRET")
+
+    if not api_key or not api_secret:
+        logging.error("API key or secret is missing. Please set them as environment variables.")
+        return
+
     fetcher = DataFetcher()
-    executor = TradeExecutor(api_key="qRCV4WdBM/HAIqpxhgxLa37On9sI6dsToHyks26qNfWf1t0SAqpxmy6R", api_secret="KXLacJceW8ZyX+T9aFgzYQWwu1C6d3VKKmiMdtdiks5ZkbmAEkh+6hklfeseMgHEVwXD4ldfKg0Oqbrz5eBfVg==")
+    executor = TradeExecutor(api_key=api_key, api_secret=api_secret)
 
     symbol = "BTC/USDT"
     timeframe = "1h"
