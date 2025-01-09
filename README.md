@@ -17,7 +17,8 @@ cd trading-bot
 Set Up a Virtual Environment
 
 ```python -m venv env
-source env/bin/activate  # On Windows: env\Scripts\activate```
+source env/bin/activate  # On Windows: env\Scripts\activate
+```
 
 Install Dependencies
 
@@ -38,18 +39,22 @@ Set Environment Variables
 Set your Kraken API credentials as environment variables:
 
 ```export KRAKEN_API_KEY=your_api_key
-export KRAKEN_API_SECRET=your_api_secret```
+export KRAKEN_API_SECRET=your_api_secret
+```
 
 On Windows:
 
 ```set KRAKEN_API_KEY=your_api_key
-set KRAKEN_API_SECRET=your_api_secret```
+set KRAKEN_API_SECRET=your_api_secret
+```
 
 Run the Bot Locally
 
 Start the bot and web server:
 
-```python test_data_fetching.py```
+```
+python test_data_fetching.py
+```
 
 Access the Flask web interface:
 
@@ -66,17 +71,23 @@ https://devcenter.heroku.com/articles/heroku-cli
 
 Create a Heroku app:
 
-```heroku create your-app-name```
+```
+heroku create your-app-name
+```
 
 Add and commit all changes to Git
 
 Push the app to Heroku:
 
-```git push heroku master```
+```
+git push heroku master
+```
 
 Scale the dyno:
 
-```heroku ps:scale web=1```
+```
+heroku ps:scale web=1
+```
 
 Access the app:
 https://your-app-name.herokuapp.com
