@@ -3,8 +3,7 @@ import pandas as pd
 
 class DataFetcher:
     def __init__(self):
-        # Change the exchange here
-        self.exchange = ccxt.kraken()
+        self.exchange = ccxt.kraken() # using kraken for trading
 
     def fetch_historical_data(self, symbol: str, timeframe: str, since: int):
         try:

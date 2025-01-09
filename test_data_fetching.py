@@ -4,17 +4,19 @@ import time
 import logging
 import os
 
-# Import your bot logic
 from app.data_fetcher import DataFetcher
 from app.strategies import sma_crossover_strategy
 from app.trade_executor import TradeExecutor
 
-# Set up logging
+# logging
 logging.basicConfig(
     filename='logs/trading_bot.log',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
+
+# go to https://jgery-bot-0e24270cbb69.herokuapp.com/ to see if app is running
+# go to https://jgery-bot-0e24270cbb69.herokuapp.com/logs to see logs
 
 # Flask app for monitoring
 app = Flask(__name__)
@@ -37,11 +39,10 @@ def run_bot():
 
     symbol = "BTC/USDT"
     timeframe = "1h"
-    trade_amount = 0.00001  # Example: Trade 0.00001 BTC
+    trade_amount = 0.00001  
 
     while True:
         try:
-            # Fetch account balances
             balance = executor.exchange.fetch_balance()
             usdt_balance = balance['total'].get('USDT', 0)
             btc_balance = balance['total'].get('BTC', 0)
@@ -49,26 +50,25 @@ def run_bot():
             logging.info(f"Available USDT balance: {usdt_balance}")
             logging.info(f"Available BTC balance: {btc_balance}")
 
-            # Fetch historical data
+            # historical data
             since = int(time.time() * 1000) - (60 * 60 * 1000)  # 1-hour ago
             data = fetcher.fetch_historical_data(symbol, timeframe, since)
 
             if data is not None:
-                # Apply SMA Crossover Strategy
                 strategy_result = sma_crossover_strategy(data)
 
                 # Get the most recent signal
                 latest_signal = strategy_result['signal'].iloc[-1]
 
-                if latest_signal == 1:  # Buy signal
-                    if usdt_balance >= trade_amount * 100:  # Ensure enough USDT for trade
+                if latest_signal == 1:  # Buy
+                    if usdt_balance >= trade_amount * 100: 
                         logging.info("Placing a BUY order...")
                         executor.execute_trade(symbol, "buy", trade_amount)
                     else:
                         logging.warning("Insufficient USDT balance to place a BUY order.")
                 
-                elif latest_signal == -1:  # Sell signal
-                    if btc_balance >= trade_amount:  # Ensure enough BTC for trade
+                elif latest_signal == -1:  # Sell
+                    if btc_balance >= trade_amount: 
                         logging.info("Placing a SELL order...")
                         executor.execute_trade(symbol, "sell", trade_amount)
                     else:
@@ -77,16 +77,15 @@ def run_bot():
                 else:
                     logging.info("No trade signal. Holding position.")
             
-            # Sleep before the next iteration
             time.sleep(300)  # Wait 5 minutes before the next cycle
 
         except Exception as e:
             logging.error(f"Error occurred: {e}")
-            time.sleep(60)  # Wait and retry after a minute
+            time.sleep(60)
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
     # Start Flask in a separate thread
     Thread(target=lambda: app.run(host="0.0.0.0", port=port)).start()
-    # Start the trading bot
+    # Start the bot
     run_bot()
