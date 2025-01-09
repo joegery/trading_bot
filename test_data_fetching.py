@@ -2,6 +2,7 @@ from flask import Flask
 from threading import Thread
 import time
 import logging
+import os
 
 # Import your bot logic
 from app.data_fetcher import DataFetcher
@@ -84,5 +85,8 @@ def run_bot():
             time.sleep(60)  # Wait and retry after a minute
 
 if __name__ == "__main__":
-    Thread(target=lambda: app.run(host="0.0.0.0", port=5000)).start()
+    port = int(os.getenv("PORT", 5000))
+    # Start Flask in a separate thread
+    Thread(target=lambda: app.run(host="0.0.0.0", port=port)).start()
+    # Start the trading bot
     run_bot()
