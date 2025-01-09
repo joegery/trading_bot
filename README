@@ -9,8 +9,10 @@ Requirements
 
 Clone the Repository
 
-```git clone https://github.com/joegery/trading-bot.git
-cd trading-bot```
+```
+git clone https://github.com/joegery/trading-bot.git
+cd trading-bot
+```
 
 Set Up a Virtual Environment
 
