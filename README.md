@@ -21,9 +21,7 @@ source env/bin/activate  # On Windows: env\Scripts\activate```
 
 Install Dependencies
 
-```
 pip install -r requirements.txt
-```
 
 Configure Kraken API
 
