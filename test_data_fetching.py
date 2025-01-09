@@ -1,8 +1,12 @@
+from flask import Flask
+from threading import Thread
+import time
+import logging
+
+# Import your bot logic
 from app.data_fetcher import DataFetcher
 from app.strategies import sma_crossover_strategy
 from app.trade_executor import TradeExecutor
-import time
-import logging
 
 # Set up logging
 logging.basicConfig(
@@ -10,6 +14,21 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
+
+# Flask app for monitoring
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Trading bot is running."
+
+@app.route("/logs")
+def view_logs():
+    try:
+        with open("logs/trading_bot.log", "r") as log_file:
+            return f"<pre>{log_file.read()}</pre>"
+    except Exception as e:
+        return f"Error reading logs: {e}"
 
 def run_bot():
     fetcher = DataFetcher()
@@ -65,4 +84,5 @@ def run_bot():
             time.sleep(60)  # Wait and retry after a minute
 
 if __name__ == "__main__":
+    Thread(target=lambda: app.run(host="0.0.0.0", port=5000)).start()
     run_bot()
